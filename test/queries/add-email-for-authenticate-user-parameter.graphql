@@ -1,0 +1,10 @@
+# requestBody has a oneOf schema. This query makes sure we handle
+# it without any regressions
+{
+  endpoint(version: "1.0.5", route: "POST /user/emails") {
+    parameters {
+      name
+      type
+    }
+  }
+}

@@ -1,0 +1,12 @@
+# check for presense of "data" parameter and "content-type" header
+{
+  endpoint(version: "1.0.5", route: "POST /markdown/raw") {
+    headers {
+      name
+      value
+    }
+    parameters {
+      name
+    }
+  }
+}

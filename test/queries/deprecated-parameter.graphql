@@ -1,0 +1,23 @@
+# the deprecated alert_id parameter should have the same values as alert_number
+{
+  endpoint(
+    route: "GET /repos/{owner}/{repo}/code-scanning/alerts/{alert_number}"
+  ) {
+    method
+    url
+    parameters {
+      alias
+      allowNull
+      default
+      deprecated
+      description
+      enum
+      in
+      mapToData
+      name
+      required
+      type
+      validation
+    }
+  }
+}

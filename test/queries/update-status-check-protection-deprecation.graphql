@@ -1,0 +1,20 @@
+# repos/updateStatusCheckPotection was renamed to
+# repos/updateStatusCheckProtection
+{
+  endpoint(
+    version: "1.0.5"
+    route: "PATCH /repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks"
+  ) {
+    changes {
+      type
+      date
+      note
+      before {
+        operationId
+      }
+      after {
+        operationId
+      }
+    }
+  }
+}

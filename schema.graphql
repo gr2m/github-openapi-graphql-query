@@ -1,0 +1,181 @@
+type Query {
+  endpoints(
+    version: String
+    ghe: GitHubEnterpriseVersion
+    filter: Filter
+    limit: Int
+    route: String
+    ignoreChangesBefore: String
+  ): [Endpoint]!
+  endpoint(
+    route: String
+    version: String
+    ghe: GitHubEnterpriseVersion
+  ): Endpoint
+  releases: [Release]!
+  lastRelease: Release!
+}
+
+type Release {
+  version: String!
+  createdAt: String!
+}
+
+input Filter {
+  isDeprecated: Boolean
+  isEnabledForApps: Boolean
+  isGithubCloudOnly: Boolean
+}
+
+type Endpoint {
+  id(format: StringFormat): String!
+  scope(format: StringFormat): String!
+  name: String!
+  description: String!
+  method: String!
+  url: String!
+  documentationUrl: String!
+
+  parameters: [Parameter]!
+  headers: [Header]
+  previews(required: Boolean): [Preview]!
+
+  isDeprecated: Boolean
+  deprecationDate: String
+  removalDate: String
+  isEnabledForApps: Boolean
+  isGithubCloudOnly: Boolean
+  triggersNotification: Boolean
+  renamed: Rename
+  responses(code: ResponseCode): [Response]
+  changes(type: ChangeType): [Change]
+}
+
+enum GitHubEnterpriseVersion {
+  GHE_218
+  GHE_219
+  GHE_220
+  GHE_221
+  GHE_222
+  GHE_223
+  GHE_224
+  GHE_30
+  GHE_31
+  GHE_32
+}
+
+enum ResponseCode {
+  CODE_2xx
+  CODE_4xx
+  CODE_200
+  CODE_204
+  CODE_201
+  CODE_418
+  CODE_205
+  CODE_404
+  CODE_302
+  CODE_422
+  CODE_403
+  CODE_202
+  CODE_409
+  CODE_405
+}
+
+type Response {
+  code: Int!
+  description: String!
+  schema: String
+  examples: [Example]
+}
+
+type Example {
+  name: String
+  data: String
+}
+
+type Header {
+  name: String!
+  description: String!
+  value: String
+  required: Boolean!
+}
+
+type Preview {
+  name: String!
+  note: String!
+  required: Boolean!
+}
+
+type Rename {
+  before(format: StringFormat): ScopeAndId
+  after(format: StringFormat): ScopeAndId
+  date: String
+  note: String
+}
+
+type ScopeAndId {
+  id(format: StringFormat): String
+  scope(format: StringFormat): String
+}
+
+type Parameter {
+  name: String!
+  deprecated: Boolean
+  alias: String
+  description: String
+
+  type: String
+  in: ParameterLocation
+  required: Boolean
+  allowNull: Boolean
+  enum: [String]
+  validation: String
+  mapToData: Boolean
+  default: String
+}
+
+type Change {
+  type: ChangeType
+  date: String!
+  note: String
+  parameter: String
+  before: BeforeAfterChange
+  after: BeforeAfterChange
+}
+
+type BeforeAfterChange {
+  description: String
+
+  # Operation change only
+  operationId: String
+
+  # Parameter change only
+  name: String
+  type: String
+  in: ParameterLocation
+  allowNull: Boolean
+  enum: [String]
+  validation: String
+  mapToData: Boolean
+  default: String
+}
+
+enum ParameterLocation {
+  PATH
+  HEADER
+  QUERY
+  BODY
+}
+
+enum ChangeType {
+  OPERATION
+  PARAMETER
+}
+
+enum StringFormat {
+  # parts separated by dashes
+  KEBABCASE
+
+  # parts separated by camelizing first letter of each word except the first
+  CAMELCASE
+}

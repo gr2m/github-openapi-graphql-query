@@ -1,0 +1,28 @@
+{
+  tarballEndpoint: endpoint(
+    version: "1.0.5"
+    route: "GET /repos/{owner}/{repo}/tarball/{ref}"
+  ) {
+    ...properties
+  }
+  zipballEndpoint: endpoint(
+    version: "1.0.5"
+    route: "GET /repos/{owner}/{repo}/zipball/{ref}"
+  ) {
+    ...properties
+  }
+}
+
+fragment properties on Endpoint {
+  changes {
+    type
+    date
+    note
+    before {
+      operationId
+    }
+    after {
+      operationId
+    }
+  }
+}
