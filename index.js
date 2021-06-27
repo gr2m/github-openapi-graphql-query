@@ -2,7 +2,8 @@ const { readFileSync } = require("fs");
 const { join } = require("path");
 
 const semver = require("semver");
-const { graphql, buildSchema } = require("graphql");
+const { graphql } = require("graphql");
+const { makeExecutableSchema } = require("@graphql-tools/schema");
 
 const getEndpoints = require("./lib/get-endpoints");
 const getEndpoint = require("./lib/get-endpoint");
@@ -53,5 +54,10 @@ const resolvers = {
 };
 
 module.exports = function (query, variables = {}) {
-  return graphql(buildSchema(schema), query, resolvers.Query, {}, variables);
+  return graphql({
+    schema: makeExecutableSchema({ typeDefs: schema, resolvers }),
+    source: query,
+    rootValue: resolvers,
+    variableValues: variables,
+  });
 };
