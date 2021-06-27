@@ -1,6 +1,5 @@
 {
   "name": "github-openapi-graphql-query",
-  "private": true,
   "version": "1.0.0",
   "description": "Library to send GraphQL queries against GitHub's REST API specifications",
   "scripts": {
