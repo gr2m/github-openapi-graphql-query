@@ -14,8 +14,8 @@ const schema = readFileSync(join(__dirname, "schema.graphql"), "utf8");
 
 const resolvers = {
   Query: {
-    endpoints: async (options) => getEndpoints(options),
-    endpoint: async (options) => getEndpoint(options),
+    endpoints: async (_, options) => getEndpoints(options),
+    endpoint: async (_, options) => getEndpoint(options),
     releases: async () => getReleases(),
     lastRelease: async () => {
       const releases = await getReleases();
