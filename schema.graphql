@@ -52,16 +52,10 @@ type Endpoint {
 }
 
 enum GitHubEnterpriseVersion {
-  GHE_218
-  GHE_219
-  GHE_220
-  GHE_221
-  GHE_222
-  GHE_223
-  GHE_224
-  GHE_30
-  GHE_31
   GHE_32
+  GHE_33
+  GHE_34
+  GHE_35
 }
 
 enum ResponseCode {
