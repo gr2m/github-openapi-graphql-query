@@ -52,6 +52,24 @@ The latest release can be retrieved, too
 }
 ```
 
+## GitHub Enterprise Cloud (GHEC) compatibility mode
+
+As of `v8.0.0` of [`octokit/openapi`](https://github.com/octokit/openapi), the `api.github.com` specification no longer include API operations for GitHub Enterprise Cloud (GHEC). In order to avoid this breaking change, the GHEC compatibility mode can be enabled by passing `ghecCompatibilityMode: true` to the `endpoints()` or `endpoint()` query.
+
+```graphql
+{
+  endpoints(ghecCompatibilityMode: true) {
+    name
+    method
+    url
+    parameters {
+      name
+      type
+    }
+  }
+}
+```
+
 ## License
 
 [MIT](LICENSE)
