@@ -1,9 +1,0 @@
-{
-  endpoint(
-    version: "8.0.0"
-    route: "GET /enterprises/{enterprise}/audit-log"
-    ghe: GHEC
-  ) {
-    id
-  }
-}

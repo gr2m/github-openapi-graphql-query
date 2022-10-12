@@ -6,7 +6,6 @@ const graphql = require("../index.js");
 
 for (const filename of readdirSync("test/queries")) {
   const path = `test/queries/${filename}`;
-
   test(path, async (t) => {
     const query = readFileSync(path, "utf-8");
     const variables = {
