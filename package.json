@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": "github:gr2m/github-openapi-graphql-query",
   "dependencies": {
-    "@graphql-tools/schema": "^9.0.2",
+    "@graphql-tools/schema": "^10.0.0",
     "got": "^11.8.5",
     "graphql": "^16.0.0",
     "lodash": "^4.17.21",
