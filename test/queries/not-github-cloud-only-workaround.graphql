@@ -1,0 +1,12 @@
+# All of these paths have the workaround, but we only test one to speed up our tests
+#
+# "GET /orgs/{org}/actions/oidc/customization/sub",
+# "PUT /orgs/{org}/actions/oidc/customization/sub",
+# "GET /repos/{owner}/{repo}/actions/oidc/customization/sub",
+# "PUT /repos/{owner}/{repo}/actions/oidc/customization/sub",
+
+{
+  endpoint(route: "GET /orgs/{org}/actions/oidc/customization/sub") {
+    isGithubCloudOnly
+  }
+}
