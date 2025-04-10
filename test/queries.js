@@ -1,8 +1,8 @@
-const { readdirSync, readFileSync } = require("fs");
+import { readdirSync, readFileSync } from "node:fs"
 
-const test = require("ava");
+import test from "ava"
 
-const graphql = require("../index.js");
+import graphql from "../index.js"
 
 for (const filename of readdirSync("test/queries")) {
   const path = `test/queries/${filename}`;
