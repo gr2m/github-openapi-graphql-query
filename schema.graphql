@@ -54,11 +54,6 @@ type Endpoint {
 }
 
 enum GitHubEnterpriseVersion {
-  GHE_37
-  GHE_38
-  GHE_39
-  GHE_310
-  GHE_311
   GHE_312
   GHE_313
   GHE_314
