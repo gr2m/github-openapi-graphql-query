@@ -1,16 +1,18 @@
-import { readFileSync } from "node:fs"
-import { join } from "node:path"
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { compare } from "semver"
-import { graphql } from "graphql"
-import { makeExecutableSchema } from "@graphql-tools/schema"
+import semver from "semver";
+import { graphql } from "graphql";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 
-import getEndpoints from "./lib/get-endpoints.js"
-import getEndpoint from "./lib/get-endpoint.js"
-import getReleases from "./lib/get-releases.js"
-import formatStringResolver from "./lib/format-string-resolver.js"
+import getEndpoints from "./lib/get-endpoints.js";
+import getEndpoint from "./lib/get-endpoint.js";
+import getReleases from "./lib/get-releases.js";
+import formatStringResolver from "./lib/format-string-resolver.js";
 
-const schema = readFileSync(join(import.meta.dirname, "schema.graphql"), "utf8");
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const schema = readFileSync(join(__dirname, "schema.graphql"), "utf8");
 
 const resolvers = {
   Query: {
@@ -20,7 +22,7 @@ const resolvers = {
     lastRelease: async () => {
       const releases = await getReleases();
       const sortedReleases = releases.sort((a, b) =>
-        compare(a.version, b.version)
+        semver.compare(a.version, b.version)
       );
       return sortedReleases.pop();
     },
