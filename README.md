@@ -24,7 +24,7 @@ const query = `
 
 graphql(query).then(
   ({ data }) => console.log(data),
-  (error) => console.error(error)
+  (error) => console.error(error),
 );
 ```
 

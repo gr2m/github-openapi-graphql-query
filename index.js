@@ -1,15 +1,17 @@
-const { readFileSync } = require("fs");
-const { join } = require("path");
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const semver = require("semver");
-const { graphql } = require("graphql");
-const { makeExecutableSchema } = require("@graphql-tools/schema");
+import semver from "semver";
+import { graphql } from "graphql";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 
-const getEndpoints = require("./lib/get-endpoints");
-const getEndpoint = require("./lib/get-endpoint");
-const getReleases = require("./lib/get-releases");
-const formatStringResolver = require("./lib/format-string-resolver");
+import getEndpoints from "./lib/get-endpoints.js";
+import getEndpoint from "./lib/get-endpoint.js";
+import getReleases from "./lib/get-releases.js";
+import formatStringResolver from "./lib/format-string-resolver.js";
 
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const schema = readFileSync(join(__dirname, "schema.graphql"), "utf8");
 
 const resolvers = {
@@ -53,7 +55,7 @@ const resolvers = {
   },
 };
 
-module.exports = function (query, variables = {}) {
+export default function (query, variables = {}) {
   return graphql({
     schema: makeExecutableSchema({ typeDefs: schema, resolvers }),
     source: query,
