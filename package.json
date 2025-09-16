@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Library to send GraphQL queries against GitHub's REST API specifications",
   "type": "module",
+  "exports": "index.js",
   "scripts": {
     "test": "ava -s"
   },
