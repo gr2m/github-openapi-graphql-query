@@ -61,6 +61,7 @@ enum GitHubEnterpriseVersion {
   GHE_316
   GHE_317
   GHE_318
+  GHE_319
   GHEC
 }
 
