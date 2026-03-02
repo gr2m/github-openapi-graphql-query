@@ -23,7 +23,7 @@
     "semver": "^7.3.7"
   },
   "devDependencies": {
-    "ava": "^6.0.0"
+    "ava": "^7.0.0"
   },
   "release": {
     "branches": [
